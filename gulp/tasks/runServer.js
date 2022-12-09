@@ -17,7 +17,6 @@ const server = {
   serverClose: () => {
     const { plugins } = global.app,
           browserSynk = plugins.browserSync;
-  
     return browserSynk.exit();
   },
 

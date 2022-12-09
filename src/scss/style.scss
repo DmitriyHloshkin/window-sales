@@ -1,9 +1,15 @@
 @import 'libs/bootstrap/bootstrap';
-@import 'libs/slickSlider/slick';
-@import 'libs/slickSlider/slick-theme';
-@import 'libs/animate/animate';
-
 @import 'variable/variables';
 @import 'mixins/mixins';
+@import 'libs/animate/animate';
+@import 'libs/slick/slick';
+@import 'start-styles';
 
-@import './start-styles.scss';
+
+.animated {
+  animation-duration: 2s;
+}
+
+.show-modal {
+  display: block;
+}

@@ -36,7 +36,7 @@ function watcher() {
 const mainTasks = gulp.parallel(copyFiles, copyHtml, copyScss, copyJs, copyFonts, copyImg);
 
 // Режим gulp
-const dev = gulp.series(reset, mainTasks, gulp.parallel(watcher, serverRun), serverClose);
+const dev = gulp.series(reset, mainTasks, gulp.parallel(serverRun, watcher), serverClose);
 const build = gulp.series(reset, mainTasks);
 
 export { dev };
