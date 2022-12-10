@@ -43,7 +43,6 @@ const modals = () => {
     let duration = window.getComputedStyle(modal).animationDuration;
         duration = +duration.replace(/\D/, '');
         duration = duration === 0 ? 0 : duration * 1000;
-    console.log(duration);
         
     setTimeout(() => modal.classList.remove('show-modal'), duration);
     
@@ -55,7 +54,7 @@ const modals = () => {
     }, time);
   };
 
-  let idTimer = showModalByTime('.popup', 10000);
+  let idTimer = showModalByTime('.popup', 60000);
 
   modalInit('.popup_engineer', '.popup_engineer_btn', '.popup_close');
   modalInit('.popup', '.phone_link', '.popup_close');
