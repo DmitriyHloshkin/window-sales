@@ -29,6 +29,8 @@ const modals = () => {
   }
 
   function showModal(modal) {
+    clearForm(modal.querySelector('form'));
+
     modal.classList.add('show-modal', 'fadeIn');
     modal.classList.remove('fadeOut');
     document.documentElement.style.overflow = 'hidden';
@@ -45,7 +47,6 @@ const modals = () => {
         duration = duration === 0 ? 0 : duration * 1000;
         
     setTimeout(() => modal.classList.remove('show-modal'), duration);
-    
   }
 
   const showModalByTime = (selector, time) => {
@@ -54,12 +55,20 @@ const modals = () => {
     }, time);
   };
 
+  function clearForm(form) {
+    if (!form) return;
+    form.reset();
+
+    const massage = form.querySelectorAll('.validation-massage-phone');
+    massage.forEach((elem) => {
+      elem.remove();
+    });
+  }
+
   let idTimer = showModalByTime('.popup', 60000);
 
   modalInit('.popup_engineer', '.popup_engineer_btn', '.popup_close');
   modalInit('.popup', '.phone_link', '.popup_close');
-
-
 
 };
 

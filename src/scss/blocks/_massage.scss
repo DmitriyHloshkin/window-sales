@@ -1,0 +1,17 @@
+.validation-massage-phone {
+  position: absolute;
+  top: 63%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 10px;
+
+
+
+  &_no_valid {
+    color: rgb(230, 142, 107);
+  }
+
+  &_valid {
+    color:rgb(23, 194, 108);
+  }
+}

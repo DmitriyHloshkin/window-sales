@@ -1,5 +1,5 @@
 const tabs = () => {
-  function tabsInit(selectorTabs, selectorTabContents, activClass, typeTabs) {
+  function tabsInit(selectorTabs, selectorTabContents, activClass) {
     const tabs = document.querySelectorAll(selectorTabs),
       tabsContent = document.querySelectorAll(selectorTabContents);
 
@@ -14,7 +14,6 @@ const tabs = () => {
 
       elem.addEventListener('click', e => {
         hideTabs();
-
         showTabs(elem, index, tabsContent[index]);
       });
     });
@@ -45,8 +44,8 @@ const tabs = () => {
 
   }
 
-  tabsInit('.glazing_slider .slick-slide:not(.slick-cloned)', '.glazing_content', 'active', 'glazing');
-  tabsInit('.decoration_slider .slick-slide:not(.slick-cloned) [data-tabs-decor-link]', '.decoration_content__item', 'after_click', 'decoration');
+  tabsInit('.glazing_slider .slick-slide:not(.slick-cloned)', '.glazing_content', 'active');
+  tabsInit('.decoration_slider .slick-slide:not(.slick-cloned) [data-tabs-decor-link]', '.decoration_content__item', 'after_click');
 };
 
 
