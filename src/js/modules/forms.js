@@ -1,39 +1,79 @@
 const forms = () => {
-  function callbackFormsInit({ formsSelector, phoneSelector, submitSelector }) {
+  function callbackFormsInit({ formsSelector, phoneSelector, nameSelector, submitSelector }) {
     const forms = document.querySelectorAll(formsSelector);
 
-    forms.forEach( (elem) => {
-      const inputPhone = elem.querySelector(phoneSelector),
-            submitBtn = elem.querySelector(submitSelector);
+    forms.forEach( (form) => {
+      const inputPhone = form.querySelector(phoneSelector),
+            inputName = form.querySelector(nameSelector);
 
-      validationPhon(inputPhone, submitBtn);
-      
+      validationPhone(inputPhone);
+      inputName.addEventListener('input', (e) => deleteMessage(e.target, `validation-massage__name`));
+
+
+      form.addEventListener('submit',(e) => submitForm(e, inputName, inputPhone));
+
     });
 
-    function validationPhon(inputElem, submitElem) {
-      if (!inputElem || !submitElem) return;
+    function validationPhone(inputPhone) {
+      if (!inputPhone ) return;
 
-      inputElem.addEventListener('input', e => {
-        const symbol = e.data || "",
-              value = e.target.value;
+      inputPhone.addEventListener('input', e => {
+        const value = e.target.value;
         
-        const symbolCorrect = symbol.match(/\d/),
-              valueCorrect = !value.match(/\D/);
-
         let massage = getMassagePhone(value);
-        showMassagePhone({...massage, inputElem});
+        showMassage({
+          ...massage, 
+          input: inputPhone, 
+          messageClass: 'validation-massage',
+          inputTypeSelector: 'validation-massage__phone',
+        });
 
       });
     }
 
-    function lockSubmit(btnElem) {
-      
+    function checkValidForm(valName, valPhone) {
+      const dataValid = {
+        name : {
+                valid: true,
+                text: '',
+                validClass: 'validation-massage_no_valid',
+                messageClass: 'validation-massage', 
+                inputTypeSelector: 'validation-massage__name',
+                emptyValue: false, 
+        },
+        phone: {
+                valid: true,
+                text: '',
+                validClass: 'validation-massage_no_valid',
+                messageClass: 'validation-massage',
+                inputTypeSelector: 'validation-massage__phone' ,
+                emptyValue: false, 
+        }
+    };
+
+      if (valPhone.match(/\D/)) {
+        dataValid.phone.valid = false;
+        dataValid.phone.text = 'данные не корректны';
+      } else {
+        if (valPhone.length < 10 || valPhone.length > 12) {
+          dataValid.phone.valid = false;
+          dataValid.phone.text = 'количество цифр не верно';
+        }
+      }
+
+      if (!valName) {
+        dataValid.name.valid = false;
+        dataValid.name.text = 'введите имя';
+      }
+
+      return dataValid;
+
     }
 
     function getMassagePhone(valuePhone) {
       const result = {
-        text: 'данные корректны',
-        cssClass: 'validation-massage-phone_valid',
+        text: '',
+        validClass: 'validation-massage_valid',
         emptyValue: !valuePhone,
       };
 
@@ -41,31 +81,77 @@ const forms = () => {
 
       if(!valueCorrect) {
         result.text = 'данные не корректны';
-        result.cssClass = 'validation-massage-phone_no_valid';
+        result.validClass = 'validation-massage_no_valid';
       }
 
       return result;
 
     }
 
-    function showMassagePhone( {text , cssClass, emptyValue,  inputElem} ) {
-      const parent = inputElem.parentElement;
-      let elemMessage = parent.querySelector('.validation-massage-phone');
-      if (elemMessage) parent.querySelector('.validation-massage-phone').remove();
+    function showMassage( {text , validClass, emptyValue,  input, messageClass, inputTypeSelector} ) {
+      // const parent = input.parentElement;
+      // let elemMessage = parent.querySelector(`.${inputTypeSelector}`);
+      // if (elemMessage) parent.querySelector(`.${inputTypeSelector}`).remove();
+      deleteMessage(input, inputTypeSelector);
       if (emptyValue) return;
 
-      elemMessage = document.createElement('div');
-      elemMessage.classList.add('validation-massage-phone', cssClass);
+      const elemMessage = document.createElement('div');
+      elemMessage.classList.add(inputTypeSelector, validClass, messageClass);
       elemMessage.textContent = text;
 
-      inputElem.after(elemMessage);
+      input.after(elemMessage);
     }
 
+    function submitForm(e, inputName, inputPhone) {
+      e.preventDefault();
+      const name = inputName.value,
+            phone = inputPhone.value;
+
+      const validDate = checkValidForm(name, phone);
+      let formValid = true;
+
+      Object.keys(validDate).forEach( (key) => {
+        const valid = validDate[key].valid,
+              data = validDate[key];
+
+        let input;
+
+        switch (key) {
+          case ('name'):
+            input = inputName;
+            break;
+
+          case ('phone'):
+            input = inputPhone;
+            break;
+        }
+
+        if (!valid) {
+          formValid = false;
+          showMassage({...data, input});
+        }
+
+      } );
+
+      if (formValid) sendData();
+
+    }
+
+    function deleteMessage(input, inputTypeSelector) {
+      const parent = input.parentElement;
+      let elemMessage = parent.querySelector(`.${inputTypeSelector}`);
+      if (elemMessage) parent.querySelector(`.${inputTypeSelector}`).remove();
+    }
+
+    function sendData() {
+
+    }
   }
 
   callbackFormsInit({
     formsSelector: '[data-type-form="callback"]',
     phoneSelector: '[name="user_phone"]',
+    nameSelector: '[name="user_name"]',
     submitSelector: '[name="submit"]',
   }); 
 

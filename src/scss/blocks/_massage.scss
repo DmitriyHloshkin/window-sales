@@ -1,11 +1,18 @@
-.validation-massage-phone {
-  position: absolute;
-  top: 63%;
-  left: 50%;
-  transform: translateX(-50%);
+.validation-massage {
   font-size: 10px;
+  position: absolute;
+  transform: translateX(-50%);
 
+  &__phone {
 
+    top: 63%;
+    left: 50%;
+  }
+
+  &__name {
+    top: 45%;
+    left: 50%;
+  }
 
   &_no_valid {
     color: rgb(230, 142, 107);
@@ -14,4 +21,5 @@
   &_valid {
     color:rgb(23, 194, 108);
   }
+
 }
