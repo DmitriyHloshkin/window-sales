@@ -1,5 +1,7 @@
+import { showModal, closeModal } from './modals.js';
+
 const forms = () => {
-  function callbackFormsInit({ formsSelector, phoneSelector, nameSelector, submitSelector }) {
+  function callbackFormsInit({ formsSelector, phoneSelector, nameSelector }) {
     const forms = document.querySelectorAll(formsSelector);
 
     forms.forEach( (form) => {
@@ -89,9 +91,6 @@ const forms = () => {
     }
 
     function showMassage( {text , validClass, emptyValue,  input, messageClass, inputTypeSelector} ) {
-      // const parent = input.parentElement;
-      // let elemMessage = parent.querySelector(`.${inputTypeSelector}`);
-      // if (elemMessage) parent.querySelector(`.${inputTypeSelector}`).remove();
       deleteMessage(input, inputTypeSelector);
       if (emptyValue) return;
 
@@ -104,9 +103,12 @@ const forms = () => {
 
     function submitForm(e, inputName, inputPhone) {
       e.preventDefault();
-      const name = inputName.value,
+      const form = e.target,
+            name = inputName.value,
             phone = inputPhone.value;
 
+      if (noValidIsShowing(form)) return;
+      
       const validDate = checkValidForm(name, phone);
       let formValid = true;
 
@@ -133,26 +135,130 @@ const forms = () => {
 
       } );
 
-      if (formValid) sendData();
+      if (formValid) sendData(form, 'json');
 
     }
 
     function deleteMessage(input, inputTypeSelector) {
       const parent = input.parentElement;
       let elemMessage = parent.querySelector(`.${inputTypeSelector}`);
-      if (elemMessage) parent.querySelector(`.${inputTypeSelector}`).remove();
+      if(elemMessage) parent.querySelector(`.${inputTypeSelector}`).remove();
     }
 
-    function sendData() {
+    async function sendData(form, bodyType) {
+      const url = "https://jsonplaceholder.typicode.com/posts/1";
+      let body;
 
+      
+      
+      switch (bodyType) {
+        case 'json': 
+          body = JSON.stringify(Object.fromEntries(new FormData(form)));
+          break;
+
+        case 'FormData': 
+          body = new FormData(form);
+          break;
+
+        default: 
+          body = JSON.stringify(Object.fromEntries(new FormData(form)));
+      }
+
+      const headers = new Headers();
+            headers.append('content-type', 'multipart/form-data');
+            
+
+
+      const request = new Request(url, {
+              headers: headers,
+              method: 'post',
+              body: body,
+            });
+
+      showLoader(form);      
+      const response = await fetch(request);
+      closeLoader(form);
+      form.reset();
+debugger
+      let isSuccess = response.status >= 200 && response.status < 300 ? true : false;
+      
+      processingResult(isSuccess);
+
+      function processingResult(isSuccess) {
+
+        const openModals = document.querySelectorAll('.show-modal'),
+              modalSendsResult = document.querySelector('.popup_send'),
+              popupFormElem = modalSendsResult.querySelector('.popup_form');
+
+        let successBlock = modalSendsResult.querySelector('.popup__img');
+            successBlock?.remove();
+
+        openModals.forEach( elem => {
+          closeModal(elem);
+        });
+
+        const title = modalSendsResult.querySelector('h1'),
+              subTitle = modalSendsResult.querySelector('h2');
+
+        title.textContent = isSuccess ? 'Заявка успешно принята!' : 'Что-то пошло не так :\\';
+        subTitle.textContent = isSuccess ? 'Мы свяжемся с вами!' : 'Попробуйте оставить заявку позже';
+
+        if (isSuccess) {
+          successBlock = document.createElement('div');
+
+          successBlock.classList.add('popup__img');
+          successBlock.innerHTML = `<img class="" src="./img/main/icons/check-solid.svg" alt="success">`;
+          popupFormElem.append(successBlock);
+        }
+
+        showModal(modalSendsResult);
+      }
+    }
+
+    function showLoader(form) {
+      const loader = form.querySelector('.loader');
+      if (loader) loader.style.display = 'block';
+    }
+
+    function closeLoader(form) {
+      const loader = form.querySelector('.loader');
+      if (loader) loader.style.display = '';
+    }
+    function noValidIsShowing(form) {
+      let validMessages = form.querySelectorAll('.validation-massage_no_valid');
+          validMessages = validMessages ? Array.from(validMessages) : [];
+
+      let noValidShow = false;
+      for (let massageElem of validMessages) {
+        noValidShow = true;
+        const startTransleteStyleElem = window.getComputedStyle(massageElem, null).getPropertyValue("transform");
+
+        const keyFrames = [
+                            {transform: `translate3d(0, 0, 0) ${startTransleteStyleElem}`},
+                            {transform: `translate3d(-5px, 0, 0) ${startTransleteStyleElem}`},
+                            {transform: `translate3d(5px, 0, 0) ${startTransleteStyleElem}`},
+                            {transform: `translate3d(-5px, 0, 0) ${startTransleteStyleElem}`},
+                            {transform: `translate3d(5px, 0, 0) ${startTransleteStyleElem}`},
+                            {transform: `translate3d(-5px, 0, 0) ${startTransleteStyleElem}`},
+                            {transform: `translate3d(5px, 0, 0) ${startTransleteStyleElem}`},
+                            {transform: `translate3d(-5px, 0, 0) ${startTransleteStyleElem}`},
+                            {transform: `translate3d(5px, 0, 0) ${startTransleteStyleElem}`},
+                            {transform: `translate3d(-5px, 0, 0) ${startTransleteStyleElem}`},
+                            {transform: `translate3d(5px, 0, 0) ${startTransleteStyleElem}`},
+                            {transform: `translate3d(0, 0, 0) ${startTransleteStyleElem}`}
+                          ];
+
+        let animateMessage = massageElem.animate(keyFrames, 2000);
+      }
+
+      return noValidShow;
     }
   }
 
   callbackFormsInit({
     formsSelector: '[data-type-form="callback"]',
     phoneSelector: '[name="user_phone"]',
-    nameSelector: '[name="user_name"]',
-    submitSelector: '[name="submit"]',
+    nameSelector: '[name="user_name"]'
   }); 
 
 };

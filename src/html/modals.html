@@ -4,21 +4,27 @@
     <div class="popup_content text-center">
       <button type="button" class="popup_close"><strong>&times;</strong></button>
       <div class="popup_form">
-        <!-- <form class="form" action="#">
-          <h2>Введите ваши данные <br>и нажмите заказать звонок</h2>
-          <input class="form-control form_input" name="user_name" required type="text" placeholder="Введите ваше имя">
-          <input class="form-control form_input" name="user_phone" required type="text" placeholder="Введите телефон">
-          <button class="text-uppercase btn-block button" name="submit" type="submit">Заказать звонок</button>
-          <p class="form_notice">Перезвоним в течение 10 минут</p>
-        </form> -->
-
         @@include("./forms/callback-form.html", {
           "title": "Введите ваши данные ",
           "subTitle": 'и нажмите заказать звонок',
           "btn-title": 'Заказать звонок',
           "btn-subtitle": 'Перезвоним в течение 10 минут',
         }) 
+        
 
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Request a result send form fail-->
+<div class="popup popup_send">
+  <div class="popup_dialog">
+    <div class="popup_content text-center">
+      <button type="button" class="popup_close"><strong>&times;</strong></button>
+      <div class="popup_form">
+        <h1>Что-то пошло не так :\</h1>
+        <h2>Попробуйте оставить заявку позже</h2>
       </div>
     </div>
   </div>
@@ -30,13 +36,6 @@
     <div class="popup_content text-center">
       <button type="button" class="popup_close"><strong>&times;</strong></button>
       <div class="popup_form">
-        <!-- <form class="form" action="#">
-          <h2>Запишитесь сегодня на <br><span>бесплатный замер</span></h2>
-          <input class="form-control form_input" name="user_name" required type="text" placeholder="Введите ваше имя">
-          <input class="form-control form_input" name="user_phone" required type="text" placeholder="Введите телефон">
-          <button class="text-uppercase btn-block button" name="submit" type="submit">Вызвать замерщика!</button>
-          <p class="form_notice">Ваши данные конфиденциальны</p>
-        </form> -->
         @@include("./forms/callback-form.html", {
           "title": "Запишитесь сегодня на ",
           "subTitle": '<span>бесплатный замер</span>',
@@ -118,14 +117,6 @@
     <div class="popup_content text-center">
       <button type="button" class="popup_calc_end_close"><strong>&times;</strong></button>
       <div class="popup_form">
-        <!-- <form class="form" action="#">
-          <h2>Спасибо за обращение! <br>Оставьте свои данные</h2>
-          <input class="form-control form_input" name="user_name" required type="text" placeholder="Введите ваше имя">
-          <input class="form-control form_input" name="user_phone" required type="text" placeholder="Введите телефон">
-          <button class="text-uppercase btn-block button" name="submit" type="submit">Рассчитать стоимость</button>
-          <p class="form_notice">Перезвоним в течение 10 минут</p>
-        </form> -->
-
         @@include("./forms/callback-form.html", {
           "title": "Спасибо за обращение! ",
           "subTitle": 'Оставьте свои данные',
