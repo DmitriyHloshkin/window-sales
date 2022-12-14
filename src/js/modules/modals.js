@@ -33,7 +33,6 @@ const modals = () => {
       });
     });
     
-
   }
 
   function showModalByTime(selector, time) {
@@ -76,7 +75,7 @@ function clearForm(form) {
   form.reset();
 
   const massage = form.querySelectorAll('.validation-massage-phone');
-  massage.forEach((elem) => {
+  massage?.forEach((elem) => {
     elem.remove();
   });
 }

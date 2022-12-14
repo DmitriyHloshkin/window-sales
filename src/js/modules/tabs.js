@@ -1,24 +1,23 @@
 const tabs = () => {
   function tabsInit(selectorTabs, selectorTabContents, activClass) {
     const tabs = document.querySelectorAll(selectorTabs),
-      tabsContent = document.querySelectorAll(selectorTabContents);
+          tabsContent = document.querySelectorAll(selectorTabContents);
 
     tabsContent.forEach(elem => elem.classList.add('animated'));
-
 
     tabs.forEach((elem, index) => {
       if (index === 0) {
         hideTabs();
-        showTabs(elem, index, tabsContent[index]);
+        showTabs(elem, tabsContent[index]);
       }
 
       elem.addEventListener('click', e => {
         hideTabs();
-        showTabs(elem, index, tabsContent[index]);
+        showTabs(elem, tabsContent[index]);
       });
     });
 
-    function showTabs(tabsElem, index, content) {
+    function showTabs(tabsElem, content) {
 
       if (tabsElem.querySelector('a')) tabsElem.querySelector('a').classList.add(activClass);
 
@@ -47,6 +46,5 @@ const tabs = () => {
   tabsInit('.glazing_slider .slick-slide:not(.slick-cloned)', '.glazing_content', 'active');
   tabsInit('.decoration_slider .slick-slide:not(.slick-cloned) [data-tabs-decor-link]', '.decoration_content__item', 'after_click');
 };
-
 
 export default tabs;

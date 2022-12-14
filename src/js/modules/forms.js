@@ -145,47 +145,50 @@ const forms = () => {
       if(elemMessage) parent.querySelector(`.${inputTypeSelector}`).remove();
     }
 
-    async function sendData(form, bodyType) {
-      const url = "https://jsonplaceholder.typicode.com/posts/1";
-      let body;
+    async function sendData(form, bodyType = 'json') {
+      const url = "https://jsonplaceholder.typicode.com/posts";
+      let body, content;
 
-      
-      
       switch (bodyType) {
         case 'json': 
           body = JSON.stringify(Object.fromEntries(new FormData(form)));
+          content = 'application/json; charset=UTF-8';
           break;
 
         case 'FormData': 
           body = new FormData(form);
+          content = 'multipart/form-data';
           break;
 
-        default: 
-          body = JSON.stringify(Object.fromEntries(new FormData(form)));
       }
 
       const headers = new Headers();
-            headers.append('content-type', 'multipart/form-data');
+            headers.append('content-type',content);
             
-
-
       const request = new Request(url, {
               headers: headers,
-              method: 'post',
+              method: 'POST',
               body: body,
             });
 
-      showLoader(form);      
-      const response = await fetch(request);
-      closeLoader(form);
-      form.reset();
-debugger
-      let isSuccess = response.status >= 200 && response.status < 300 ? true : false;
-      
-      processingResult(isSuccess);
+      showLoader(form);
 
+      try {
+        const response = await fetch(request),
+              saveDate = await response.json();
+
+        processingResult.call(saveDate, true);
+
+      } catch(e) {
+        processingResult(false);
+
+      } finally {
+        closeLoader(form);
+        form.reset();
+      }
+        
       function processingResult(isSuccess) {
-
+        
         const openModals = document.querySelectorAll('.show-modal'),
               modalSendsResult = document.querySelector('.popup_send'),
               popupFormElem = modalSendsResult.querySelector('.popup_form');
@@ -200,8 +203,9 @@ debugger
         const title = modalSendsResult.querySelector('h1'),
               subTitle = modalSendsResult.querySelector('h2');
 
-        title.textContent = isSuccess ? 'Заявка успешно принята!' : 'Что-то пошло не так :\\';
-        subTitle.textContent = isSuccess ? 'Мы свяжемся с вами!' : 'Попробуйте оставить заявку позже';
+
+        title.textContent = isSuccess && this ? `Заявка успешно принята ${this.user_name}!` : 'Что-то пошло не так :\\';
+        subTitle.textContent = isSuccess ? `Мы свяжемся с вами по номеру ${this.user_phone}!` : 'Попробуйте оставить заявку позже';
 
         if (isSuccess) {
           successBlock = document.createElement('div');
