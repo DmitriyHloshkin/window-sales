@@ -1115,6 +1115,10 @@ textarea:focus {
   padding: 1rem 5rem;
 }
 
+.img-gallery-item {
+  width: 65rem;
+}
+
 /*Media*/
 @media (max-width: 1400px) {
   .main {
@@ -1188,6 +1192,10 @@ textarea:focus {
 }
 
 @media (max-width: 991px) {
+  .img-gallery-item {
+    width: 55rem;
+  }
+
   .section_header h2 {
     font-size: 2.8rem;
   }
@@ -1352,6 +1360,10 @@ textarea:focus {
 }
 
 @media (max-width: 767px) {
+  .img-gallery-item {
+    width: 45rem;
+  }
+
   .section_header h2 {
     font-size: 2.5rem;
   }
@@ -1504,6 +1516,10 @@ textarea:focus {
 }
 
 @media (max-width: 530px) {
+  .img-gallery-item {
+    width: 31rem;
+  }
+
   #timer {
     width: 295px;
     height: 150px;

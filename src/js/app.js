@@ -5,6 +5,7 @@ import modals from './modules/modals.js';
 import tabs from './modules/tabs.js';
 import forms from './modules/forms.js';
 import timer from './modules/timer.js';
+import gallery from './modules/gallery.js';
 
 window.addEventListener("DOMContentLoaded",() => {
   checkWebp();
@@ -13,4 +14,5 @@ window.addEventListener("DOMContentLoaded",() => {
   tabs();
   forms();
   timer();
+  gallery();
 });

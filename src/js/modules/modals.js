@@ -111,7 +111,7 @@ function closeModal(modal) {
       duration = +duration.replace(/\D/, '');
       duration = duration === 0 ? 0 : duration * 1000;
       
-  setTimeout(() => modal.classList.remove('show-modal'), duration);
+  setTimeout(() => modal.classList.remove('show-modal'), duration / 2);
 }
 
 function showModal(modal, idTimer = null) {
