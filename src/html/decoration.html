@@ -8,16 +8,16 @@
     <!-- Slider -->
     <div class="decoration_slider">
       <div class="decoration_item  wow fadeInUp">
-        <div class="internal_link no_click after_click" data-tabs-decor-link><a>Внутренняя отделка</a></div>
+        <div class="internal_link no_click" data-tabs-decor-link data-content-class="internal"><a>Внутренняя отделка</a></div>
       </div>
       <div class="decoration_item wow fadeInUp" data-wow-delay="0.1s">
-        <div class="external_link no_click" data-tabs-decor-link><a>Внешняя отделка</a></div>
+        <div class="external_link no_click" data-tabs-decor-link data-content-class="external"><a>Внешняя отделка</a></div>
       </div>
       <div class="decoration_item wow fadeInUp" data-wow-delay="0.2s">
-        <div class="rising_link no_click" data-tabs-decor-link><a>Выносное остекление</a></div>
+        <div class="rising_link no_click" data-tabs-decor-link data-content-class="rising"><a>Выносное остекление</a></div>
       </div>
       <div class="decoration_item wow fadeInUp" data-wow-delay="0.3s">
-        <div class="roof_link no_click" data-tabs-decor-link><a>Крыша на балкон</a></div>
+        <div class="roof_link no_click" data-tabs-decor-link data-content-class="roof"><a>Крыша на балкон</a></div>
       </div>
     </div>
 
@@ -73,15 +73,6 @@
             </div>
           </div>
           <div class="col-lg-4 col-lg-offset-0 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-12">
-            <!-- <form class="form main_form decoration_form" action="#">
-              <h2>Запишитесь сегодня на <br><span>бесплатный замер</span></h2>
-              <input class="form-control form_input" name="user_name" required type="text"
-                placeholder="Введите ваше имя">
-              <input class="form-control form_input" name="user_phone" required type="text"
-                placeholder="Введите телефон">
-              <button class="text-uppercase btn-block button" name="submit" type="submit">Вызвать замерщика!</button>
-              <p class="form_notice">Ваши данные конфиденциальны</p>
-            </form> -->
             @@include("./forms/decoration-form.html")
           </div>
         </div> <!-- /internal -->
@@ -96,35 +87,35 @@
           <!-- Material -->
           <div class="col-lg-5 col-md-8 col-xs-12">
             <div class="row">
-              <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
+              <div class="col-lg-4 col-md-4 col-sm-3 col-xs-6">
                 <div class="decoration_content_material text-center">
                   <img src="./img/decoration/2/metal.png" alt="#">
                   <h3>Металлический <br>сайдинг</h3>
                   <p>600 руб. кв.м.<span>с материалом</span></p>
                 </div>
               </div>
-              <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
+              <div class="col-lg-4 col-md-4 col-sm-3 col-xs-6">
                 <div class="decoration_content_material text-center">
                   <img src="./img/decoration/2/plastic.png" alt="#">
                   <h3>Пластиковая <br>вагонка</h3>
                   <p>750 руб. кв.м.<span>с материалом</span></p>
                 </div>
               </div>
-              <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
+              <div class="col-lg-4 col-md-4 col-sm-3 col-xs-6">
                 <div class="decoration_content_material text-center">
                   <img src="./img/decoration/2/profnastil.png" alt="#">
                   <h3>Профнастил</h3>
                   <p>800 руб. кв.м.<span>с материалом</span></p>
                 </div>
               </div>
-              <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
+              <div class="col-lg-4 col-md-4 col-sm-3 col-xs-6">
                 <div class="decoration_content_material text-center">
                   <img src="./img/decoration/2/tree.png" alt="#">
                   <h3>Деревянная <br>вагонка</h3>
                   <p>1250 руб. кв.м.<span>с материалом</span></p>
                 </div>
               </div>
-              <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
+              <div class="col-lg-4 col-md-4 col-sm-3 col-xs-6">
                 <div class="decoration_content_material text-center">
                   <img src="./img/decoration/2/vinil.png" alt="#">
                   <h3>Виниловый <br>сайдинг</h3>
@@ -134,15 +125,6 @@
             </div>
           </div>
           <div class="col-lg-4 col-lg-offset-0 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-12">
-            <!-- <form class="form main_form decoration_form" action="#">
-              <h2>Запишитесь сегодня на <br><span>бесплатный замер</span></h2>
-              <input class="form-control form_input" name="user_name" required type="text"
-                placeholder="Введите ваше имя">
-              <input class="form-control form_input" name="user_phone" required type="text"
-                placeholder="Введите телефон">
-              <button class="text-uppercase btn-block button" name="submit" type="submit">Вызвать замерщика!</button>
-              <p class="form_notice">Ваши данные конфиденциальны</p>
-            </form> -->
             @@include("./forms/decoration-form.html") 
           </div>
         </div>
@@ -189,15 +171,6 @@
             </div>
           </div>
           <div class="col-lg-4 col-lg-offset-0 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-12">
-            <!-- <form class="form main_form decoration_form" action="#">
-              <h2>Запишитесь сегодня на <br><span>бесплатный замер</span></h2>
-              <input class="form-control form_input" name="user_name" required type="text"
-                placeholder="Введите ваше имя">
-              <input class="form-control form_input" name="user_phone" required type="text"
-                placeholder="Введите телефон">
-              <button class="text-uppercase btn-block button" name="submit" type="submit">Вызвать замерщика!</button>
-              <p class="form_notice">Ваши данные конфиденциальны</p>
-            </form> -->
             @@include("./forms/decoration-form.html") 
           </div>
         </div>
@@ -251,15 +224,6 @@
             </div>
           </div>
           <div class="col-lg-4 col-lg-offset-0 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-12">
-            <!-- <form class="form main_form decoration_form" action="#">
-              <h2>Запишитесь сегодня на <br><span>бесплатный замер</span></h2>
-              <input class="form-control form_input" name="user_name" required type="text"
-                placeholder="Введите ваше имя">
-              <input class="form-control form_input" name="user_phone" required type="text"
-                placeholder="Введите телефон">
-              <button class="text-uppercase btn-block button" name="submit" type="submit">Вызвать замерщика!</button>
-              <p class="form_notice">Ваши данные конфиденциальны</p>
-            </form> -->
             @@include("./forms/decoration-form.html") 
 
           </div>

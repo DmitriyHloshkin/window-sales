@@ -8,30 +8,36 @@ const tabs = () => {
     tabs.forEach((elem, index) => {
       if (index === 0) {
         hideTabs();
-        showTabs(elem, tabsContent[index]);
+        showTabs(elem);
       }
 
       elem.addEventListener('click', e => {
         hideTabs();
-        showTabs(elem, tabsContent[index]);
+        showTabs(elem);
       });
     });
 
-    function showTabs(tabsElem, content) {
-
-      if (tabsElem.querySelector('a')) tabsElem.querySelector('a').classList.add(activClass);
-
+    function showTabs(tabsElem) {
+      if (tabsElem.querySelector('.glazing_block a')) tabsElem.querySelector('.glazing_block a').classList.add(activClass);
       tabsElem.classList.add(activClass);
-      content.style.display = 'block';
-      content.classList.add('fadeIn');
-      content.classList.remove('fadeOut');
+      
+      const typeMaterial = tabsElem.getAttribute('data-content-class');
+
+      tabsContent.forEach( elem => {      
+        if (elem.matches(`.${typeMaterial}`)) {
+          elem.style.display = 'block';
+          elem.classList.add('fadeIn');
+          elem.classList.remove('fadeOut');
+        }
+      });
     }
 
     function hideTabs() {
       tabs.forEach(elem => {
-        elem.classList.remove(activClass);
-        if (elem.querySelector('a')) elem.querySelector('a').classList.remove(activClass);
-
+        document.querySelectorAll(`.${activClass}`).forEach( elem => {
+          elem.classList.remove(activClass);
+          if (elem.querySelector('a')) elem.querySelector('a').blur();
+        });
       });
 
       tabsContent.forEach(elem => {
@@ -43,8 +49,10 @@ const tabs = () => {
 
   }
 
-  tabsInit('.glazing_slider .slick-slide:not(.slick-cloned)', '.glazing_content', 'active');
-  tabsInit('.decoration_slider .slick-slide:not(.slick-cloned) [data-tabs-decor-link]', '.decoration_content__item', 'after_click');
+  tabsInit('.glazing_slider .slick-active .glazing_block', '.glazing_content', 'active');
+  tabsInit('.decoration_slider .slick-active [data-tabs-decor-link]', '.decoration_content__item', 'after_click');
+  tabsInit('.balcon_icons_img', '.big_img img', 'do_image_more');
+
 };
 
 export default tabs;

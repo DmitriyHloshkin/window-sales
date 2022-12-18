@@ -1,5 +1,6 @@
 import 'slick-carousel';
 import $ from 'jquery';
+import tabs from './tabs.js';
 
 export default function slickSlider() {
     $(document).ready(function() {
@@ -41,7 +42,8 @@ export default function slickSlider() {
                 }
             }]
         });
-        $('.decoration_slider').slick({
+
+    $('.decoration_slider').slick({
             infinite: true,
             slidesToShow: 4,
             slidesToScroll: 1,
@@ -71,5 +73,15 @@ export default function slickSlider() {
                 }
             }]
         });
+
+        $('.glazing_slider').on('afterChange', function(slick, currentSlide){
+            tabs();
+        });
+    
+        $('.decoration_slider').on('afterChange', function(slick, currentSlide){
+            tabs();
+        });
     }); 
+
+
 }  

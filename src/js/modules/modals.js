@@ -22,12 +22,14 @@ const modals = () => {
     });
 
     modal.addEventListener('click', e => {
-      if (e.target === modal) {
+      if (e.target === modal && 
+        !modal.matches('[data-popup-type="calc"]')) {
+          
         closeModal(modal); 
       }
     });
 
-    btnsSend.forEach( elem => {
+    btnsSend?.forEach( elem => {
       elem.addEventListener('click', () => {
         clearInterval(timerIdOpenModal);
       });
@@ -68,13 +70,32 @@ const modals = () => {
     btnSend: '[name="submit"]',
   });
 
+  modalInit({
+    modalSelector: '.popup_calc', 
+    closeModalSelector: '.popup_calc_close',
+    triggerSelector: '.popup_calc_btn', 
+    timerIdOpenModal: idTimer,
+  });
+
+  modalInit({
+    modalSelector: '.popup_calc_profile', 
+    closeModalSelector: '.popup_calc_profile_close', 
+    timerIdOpenModal: idTimer,
+  });
+  
+  modalInit({
+    modalSelector: '.popup_calc_end', 
+    closeModalSelector: '.popup_calc_end_close', 
+    timerIdOpenModal: idTimer,
+  });
+
 };
 
 function clearForm(form) {
   if (!form) return;
   form.reset();
 
-  const massage = form.querySelectorAll('.validation-massage-phone');
+  const massage = form.querySelectorAll('.validation-massage');
   massage?.forEach((elem) => {
     elem.remove();
   });
@@ -85,6 +106,7 @@ function closeModal(modal) {
   modal.classList.add('fadeOut');
   document.documentElement.style.overflow = '';
   
+  
   let duration = window.getComputedStyle(modal).animationDuration;
       duration = +duration.replace(/\D/, '');
       duration = duration === 0 ? 0 : duration * 1000;
@@ -94,11 +116,21 @@ function closeModal(modal) {
 
 function showModal(modal, idTimer = null) {
   clearForm(modal.querySelector('form'));
+  clearCalcForm();
+  clearCalcProfileForm(); 
 
-  modal.classList.add('show-modal', 'fadeIn');
+  modal.classList.add('fadeIn','show-modal');
   modal.classList.remove('fadeOut');
   document.documentElement.style.overflow = 'hidden';
   clearInterval(idTimer);
+}
+
+function clearCalcForm() {
+  document.querySelectorAll('[data-form-calc]').forEach( elem => elem.value = '');
+}
+
+function clearCalcProfileForm() {
+  document.querySelectorAll('input[name="checkbox-test"]').forEach( elem => elem.checked = false);
 }
 
 export default modals;

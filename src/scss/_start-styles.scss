@@ -7,7 +7,7 @@ html {
 }
 
 body {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-weight: 400;
   font-style: normal;
   color: #000000;
@@ -45,7 +45,7 @@ textarea:focus {
 .form h2 {
   margin-bottom: 3rem;
   font-size: 2rem;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-weight: 700;
   font-style: normal;
   color: #333333;
@@ -53,7 +53,7 @@ textarea:focus {
 }
 
 .form h2 span {
-  font-size: 2.4rem;
+  font-size: 2.3rem;
   text-transform: uppercase;
 }
 
@@ -116,7 +116,7 @@ textarea:focus {
 .button {
   padding: 2.5rem 0rem;
   font-size: 1.7rem;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-weight: 700;
   font-style: normal;
   border: 1px solid #ffc600;
@@ -140,7 +140,7 @@ textarea:focus {
 .section_header h2 {
   font-size: 3rem;
   line-height: 1.4;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-weight: 700;
   font-style: normal;
   color: #333333;
@@ -216,7 +216,7 @@ textarea:focus {
   background-color: #ffffff;
   font-size: 1.4rem;
   line-height: 1.2;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-weight: 700;
   font-style: normal;
   color: #55a831;
@@ -272,7 +272,7 @@ textarea:focus {
 }
 
 .header .working_hours p span {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-weight: 700;
   font-style: normal;
   font-size: 1.8rem;
@@ -293,7 +293,7 @@ textarea:focus {
 .header .contact_us_wrap a {
   display: block;
   font-size: 2.3rem;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-weight: 700;
   font-style: normal;
   color: #333333;
@@ -306,7 +306,7 @@ textarea:focus {
 
 .header .contact_us_wrap .phone_link {
   font-size: 1.5rem;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-weight: 400;
   font-style: normal;
   color: #0089cd;
@@ -316,7 +316,7 @@ textarea:focus {
 /*Main*/
 .main {
   padding: 10rem 0;
-  background: #ffffff url(../img/main/bg.png) 0 0 no-repeat;
+  background: #ffffff url(../img/main/bg.webp) center center/cover no-repeat;
 }
 
 .main h1 {
@@ -324,7 +324,7 @@ textarea:focus {
   /*margin-top: -4rem;*/
   font-size: 5.5rem;
   line-height: 1.5;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-weight: 700;
   font-style: normal;
   color: #333333;
@@ -351,7 +351,7 @@ textarea:focus {
   margin-top: -6rem;
   font-size: 1.3rem;
   line-height: 1.3;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-weight: 700;
   font-style: normal;
   text-transform: uppercase;
@@ -398,14 +398,21 @@ textarea:focus {
   border-bottom-left-radius: 5px;
   border-top-left-radius: 5px;
   border-top: 0.5rem solid #0089cd;
-  background: -webkit-gradient(linear, left top, left bottom, from(#c7dce9), color-stop(0%, #c7dce9), to(rgba(255, 255, 255, 0)));
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from(#c7dce9),
+    color-stop(0%, #c7dce9),
+    to(rgba(255, 255, 255, 0))
+  );
   background: linear-gradient(180deg, #c7dce9 0%, #c7dce9 0%, rgba(255, 255, 255, 0) 100%);
 }
 
 .glazing_cold h3 {
   margin-bottom: 2.5rem;
   font-size: 2rem;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-weight: 700;
   font-style: normal;
   text-transform: uppercase;
@@ -419,14 +426,21 @@ textarea:focus {
   border-bottom-right-radius: 5px;
   border-top-right-radius: 5px;
   border-top: 0.5rem solid #ffb903;
-  background: -webkit-gradient(linear, left top, left bottom, from(#f7eac9), color-stop(0%, #f7eac9), to(rgba(255, 255, 255, 0)));
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from(#f7eac9),
+    color-stop(0%, #f7eac9),
+    to(rgba(255, 255, 255, 0))
+  );
   background: linear-gradient(180deg, #f7eac9 0%, #f7eac9 0%, rgba(255, 255, 255, 0) 100%);
 }
 
 .glazing_warm h3 {
   margin-bottom: 2.5rem;
   font-size: 2rem;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-weight: 700;
   font-style: normal;
   text-transform: uppercase;
@@ -444,7 +458,7 @@ textarea:focus {
 }
 
 .glazing ul li:before {
-  content: '';
+  content: "";
   display: inline-block;
   margin-right: 1.7rem;
   width: 2.5rem;
@@ -464,14 +478,14 @@ textarea:focus {
   vertical-align: middle;
   font-size: 2rem;
   line-height: 1.7;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-weight: 700;
   font-style: normal;
 }
 
 .glazing_price p span {
   font-size: 1.4rem;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-weight: 400;
   font-style: normal;
 }
@@ -539,7 +553,14 @@ textarea:focus {
   border-top: 1rem solid #0089cd;
   height: 8rem;
   padding: 2rem 0;
-  background: -webkit-gradient(linear, left top, left bottom, from(#ebebeb), color-stop(0%, #ebebeb), to(rgba(255, 255, 255, 0)));
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from(#ebebeb),
+    color-stop(0%, #ebebeb),
+    to(rgba(255, 255, 255, 0))
+  );
   background: linear-gradient(180deg, #ebebeb 0%, #ebebeb 0%, rgba(255, 255, 255, 0) 100%);
 }
 
@@ -560,7 +581,7 @@ textarea:focus {
 
 .decoration_content_material p {
   font-size: 1.4rem;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-weight: 700;
   font-style: normal;
   color: #0089cd;
@@ -569,7 +590,7 @@ textarea:focus {
 .decoration_content_material p span {
   display: block;
   font-size: 1.2rem;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-weight: 400;
   font-style: normal;
   color: #000000;
@@ -670,7 +691,7 @@ textarea:focus {
 .sale_title {
   margin-bottom: 8rem;
   font-size: 4.8rem;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-weight: 700;
   font-style: normal;
   text-transform: uppercase;
@@ -683,9 +704,8 @@ textarea:focus {
   line-height: 1.6;
 }
 
-
 /* Timer */
- .timer1 {
+.timer1 {
   padding: 10px;
   border: 1px solid grey;
   background-color: white;
@@ -694,38 +714,31 @@ textarea:focus {
   text-align: center;
   width: 360px;
   height: 150px;
+  // margin: 0 auto;
 }
 
 .container1 {
   display: inline-block;
-
 }
 .numbers1 {
   display: block;
-  float: left;  
+  float: left;
   color: white;
   font-size: 40px;
   margin-right: 10px;
 }
 
-.timer1 span{
+.timer1 span {
   margin-right: 2px;
   background-color: #575757;
   border-radius: 7px;
   padding: 4px;
 }
-.description1{
+.description1 {
   font-size: 18px;
   text-align: center;
   color: black;
 }
-
-
-
-
-
-
-
 
 /*Contacts*/
 .contacts {
@@ -750,7 +763,7 @@ textarea:focus {
 }
 
 .contacts_info p span {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-weight: 400;
   font-style: normal;
 }
@@ -815,7 +828,7 @@ textarea:focus {
 
 .footer .contacts .phone {
   font-size: 1.8rem;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-weight: 700;
   font-style: normal;
   color: #333333;
@@ -860,7 +873,6 @@ textarea:focus {
   z-index: 9;
   background-color: rgba(0, 0, 0, 0.7);
   opacity: 1;
-
 }
 
 .popup_content,
@@ -874,6 +886,7 @@ textarea:focus {
   transform: translateX(-50%);
   width: 40rem;
   background-color: #ffffff;
+  border-radius: 1rem;
 }
 
 .popup_close,
@@ -913,7 +926,7 @@ textarea:focus {
 .popup_calc_content h2 {
   margin-bottom: 3rem;
   font-size: 3rem;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-weight: 700;
   font-style: normal;
   color: #333333;
@@ -928,21 +941,27 @@ textarea:focus {
   margin-bottom: 1rem;
 }
 
+.popup_calc_content .big_img {
+  height: 230px;
+}
+
 .popup_calc_content .big_img img {
   display: none;
   margin-bottom: 3rem;
   width: 30rem;
+  margin: 0 auto;
+  height: 100%;
 }
 
 .popup_calc_content #type1 {
   display: inline-block;
 }
 
-.do_image_more img{
-    width: 110px;
-    height: 70px;
-    cursor: pointer;
-  }
+.do_image_more img {
+  width: 110px;
+  height: 70px;
+  cursor: pointer;
+}
 
 .popup_calc_close {
   position: absolute;
@@ -1006,7 +1025,7 @@ textarea:focus {
 .popup_calc_profile_content h2 {
   margin-bottom: 3rem;
   font-size: 3rem;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-weight: 700;
   font-style: normal;
   color: #333333;
@@ -1040,7 +1059,7 @@ textarea:focus {
   vertical-align: middle;
 }
 
-.popup_calc_profile_content .checkbox:checked+.checkbox-custom::before {
+.popup_calc_profile_content .checkbox:checked + .checkbox-custom::before {
   content: "";
   display: block;
   position: absolute;
@@ -1101,12 +1120,20 @@ textarea:focus {
   .main {
     background-position: -30rem 0;
   }
+
+  .phone_link {
+    font-size: 1.9rem;
+  }
 }
 
 @media (max-width: 1199px) {
+
+  .decoration_item {
+    outline: none;
+  }
+
   .header_btn {
     padding: 1rem 1rem 1rem 5rem;
-    font-size: 1.2rem;
   }
 
   .header .working_hours_img img {
@@ -1118,14 +1145,14 @@ textarea:focus {
   }
 
   .header .working_hours p span {
-    font-family: 'Open Sans', sans-serif;
+    font-family: "Open Sans", sans-serif;
     font-weight: 700;
     font-style: normal;
     font-size: 1.6rem;
   }
 
   .header .contact_us_wrap a {
-    font-size: 2rem;
+    font-size: 1.9rem;
   }
 
   .glazing_cold img {
@@ -1158,12 +1185,15 @@ textarea:focus {
   .payment_img img {
     margin-right: 1rem;
   }
-
 }
 
 @media (max-width: 991px) {
   .section_header h2 {
     font-size: 2.8rem;
+  }
+
+  .webp .sale {
+    background: #ffffff url(../img/sale/bg.webp) right center/cover no-repeat !important;
   }
 
   .header {
@@ -1177,6 +1207,7 @@ textarea:focus {
 
   .header .logo p {
     margin-top: 1rem;
+    font-size: 1.1rem;
     display: block;
   }
 
@@ -1198,7 +1229,7 @@ textarea:focus {
 
   .header .working_hours p span {
     display: block;
-    font-family: 'Open Sans', sans-serif;
+    font-family: "Open Sans", sans-serif;
     font-weight: 700;
     font-style: normal;
     font-size: 1.6rem;
@@ -1209,16 +1240,16 @@ textarea:focus {
   }
 
   .header .contact_us_wrap a {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
   }
-
 
   .header .contact_us_wrap .phone_link {
     font-size: 1.15rem;
   }
 
-  .main {
-    background-size: cover;
+  .main,
+  .webp .main {
+    background-size: cover !important;
     padding: 5rem 0;
     padding-bottom: 7rem;
   }
@@ -1295,12 +1326,12 @@ textarea:focus {
   }
 
   .sale_title {
-    margin-bottom: 3rem;
+    margin-bottom: 1rem;
     text-align: center;
   }
 
   .sale_subtitle {
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
     text-align: center;
   }
 
@@ -1312,6 +1343,11 @@ textarea:focus {
     display: block;
     margin-right: 0;
     margin-bottom: 2rem;
+  }
+
+  .timer1 {
+    margin: 0 auto;
+    margin-bottom: 10px;
   }
 }
 
@@ -1349,8 +1385,9 @@ textarea:focus {
   }
 
   .header .working_hours {
-    display: block;
+    display: flex;
     height: auto;
+    justify-content: center;
   }
 
   .header .contact_us {
@@ -1453,7 +1490,7 @@ textarea:focus {
 
   .footer .contacts .phone {
     font-size: 1.8rem;
-    font-family: 'Open Sans', sans-serif;
+    font-family: "Open Sans", sans-serif;
     font-weight: 700;
     font-style: normal;
     color: #333333;
@@ -1467,15 +1504,31 @@ textarea:focus {
 }
 
 @media (max-width: 530px) {
+  #timer {
+    width: 295px;
+    height: 150px;
+  }
+
   .form {
-    margin-top: 2rem;
+    // margin-top: 2rem;
     padding: 1.5rem 2rem;
     padding-bottom: 3rem;
+    border-radius: 1rem;
+    height: 380px;
+  }
+
+  .validation-massage__phone {
+    top: 61%;
   }
 
   .form h2 {
     margin-bottom: 1rem;
     font-size: 1.4rem;
+    height: 49px;
+  }
+
+  .popup_calc input{
+    width: 9rem;
   }
 
   .form h2 span {
@@ -1549,8 +1602,6 @@ textarea:focus {
     margin-top: 1rem;
   }
 
-
-
   .header .working_hours p {
     font-size: 1.2rem;
   }
@@ -1560,7 +1611,7 @@ textarea:focus {
   }
 
   .header .contact_us_wrap a {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
 
   .header .contact_us_wrap a img {
@@ -1569,10 +1620,11 @@ textarea:focus {
   }
 
   .header .contact_us_wrap .phone_link {
-    font-size: 1.2rem;
+    font-size: .9rem;
   }
 
-  .main {
+  .main,
+  .webp .main {
     padding: 3rem 0;
     padding-bottom: 5rem;
     background: #ffffff url(../img/main/bg.png) 0 0 no-repeat;
@@ -1706,19 +1758,22 @@ textarea:focus {
   .popup_content,
   .popup_engineer_content,
   .popup_calc_end_content {
-    width: 31rem;
+    width: 26rem;
   }
 
   .popup_close,
   .popup_engineer_close,
   .popup_calc_end_close {
     position: absolute;
-    top: -1rem;
-    right: 1rem;
+    // top: -1rem;
+    // right: 1rem;
     font-size: 4rem;
-    color: #000000;
+    // color: #000000;
+    color: white;
     border: none;
     background: transparent;
+    top: -4rem;
+    right: -3rem;
   }
 
   .popup_calc_close {
@@ -1732,7 +1787,7 @@ textarea:focus {
   }
 
   .popup_calc_content {
-    width: 42rem;
+    width: 29rem;
   }
 
   .popup_calc_content h2 {
@@ -1750,12 +1805,12 @@ textarea:focus {
   }
 
   .popup_calc_content .balcon_icons img {
-    width: 20%;
+    width: 24%;
   }
 
   .popup_calc_content .big_img img {
     margin-bottom: 2rem;
-    width: 25rem;
+    width: 28rem;
   }
 
   .popup_calc_content #type1 {
@@ -1805,6 +1860,10 @@ textarea:focus {
   }
 }
 
+.balcon_icons_img:hover {
+  cursor: pointer;
+}
+
 /* small devices, tablets */
 @media only screen and (max-width: 768px) {
   .animated {
@@ -1815,7 +1874,7 @@ textarea:focus {
     -webkit-transform: none !important;
     transform: none !important;
     /*css animations*/
-    -webkit-animation: none !important;
-    animation: none !important;
+    // -webkit-animation: none !important;
+    // animation: none !important;
   }
 }

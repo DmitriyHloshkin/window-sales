@@ -1,6 +1,11 @@
 import { showModal, closeModal } from './modals.js';
 
 const forms = () => {
+
+  const resultData = {
+ 
+  };
+
   function callbackFormsInit({ formsSelector, phoneSelector, nameSelector }) {
     const forms = document.querySelectorAll(formsSelector);
 
@@ -145,78 +150,218 @@ const forms = () => {
       if(elemMessage) parent.querySelector(`.${inputTypeSelector}`).remove();
     }
 
-    async function sendData(form, bodyType = 'json') {
-      const url = "https://jsonplaceholder.typicode.com/posts";
-      let body, content;
+    function noValidIsShowing(form) {
+      let validMessages = form.querySelectorAll('.validation-massage_no_valid');
+          validMessages = validMessages ? Array.from(validMessages) : [];
 
-      switch (bodyType) {
-        case 'json': 
-          body = JSON.stringify(Object.fromEntries(new FormData(form)));
-          content = 'application/json; charset=UTF-8';
-          break;
-
-        case 'FormData': 
-          body = new FormData(form);
-          content = 'multipart/form-data';
-          break;
-
+      let noValidShow = false;
+      for (let massageElem of validMessages) {
+        noValidShow = true;
+        showNoValidAnimation(massageElem);
       }
 
-      const headers = new Headers();
-            headers.append('content-type',content);
-            
-      const request = new Request(url, {
-              headers: headers,
-              method: 'POST',
-              body: body,
-            });
+      return noValidShow;
+    }
+  }
 
-      showLoader(form);
+  function calcForms({calcFormProfileSelector, calcFormProfileContentSelector, calcFormProfileEndSelector}) {
+    const calcModal = document.querySelector(calcFormProfileSelector),
+          calclProfile = document.querySelector(calcFormProfileContentSelector),
+          calcEnd = document.querySelector(calcFormProfileEndSelector);
 
-      try {
-        const response = await fetch(request),
-              saveDate = await response.json();
+    function initCalcModal({ triggerSelector }) {
+      const widthWindow = document.querySelector('#width'),
+            heigthWindow = document.querySelector('#height'),
+            btnNext = document.querySelectorAll(triggerSelector);
+  
+      validationInput(widthWindow, heigthWindow);
+  
+      btnNext.forEach( btnCalc => {
+        btnCalc.addEventListener('click', () => {
+          let isValidInput = true;
+  
+          if (!widthWindow.value) {
+            showNoValidAnimation(widthWindow);
+            isValidInput = false;
+          }
+  
+          if (!heigthWindow.value) {
+            showNoValidAnimation(heigthWindow);
+            isValidInput = false;
+          }
+  
+          if (!isValidInput) return;
+  
+          resultData.height = heigthWindow.value;
+          resultData.width = heigthWindow.value;
+          resultData.view = document.querySelector('.do_image_more img').getAttribute('alt') || '';
 
-        processingResult.call(saveDate, true);
-
-      } catch(e) {
-        processingResult(false);
-
-      } finally {
-        closeLoader(form);
-        form.reset();
-      }
-        
-      function processingResult(isSuccess) {
-        
-        const openModals = document.querySelectorAll('.show-modal'),
-              modalSendsResult = document.querySelector('.popup_send'),
-              popupFormElem = modalSendsResult.querySelector('.popup_form');
-
-        let successBlock = modalSendsResult.querySelector('.popup__img');
-            successBlock?.remove();
-
-        openModals.forEach( elem => {
-          closeModal(elem);
+          closeModal(calcModal);
+          showModal(calclProfile);
         });
+      });
+  
+      function validationInput(...inputs) {
+        inputs.forEach( (input) => input.addEventListener('input', () => input.value = input.value.replace(/\D/, '')));
+      }
+    }
 
-        const title = modalSendsResult.querySelector('h1'),
-              subTitle = modalSendsResult.querySelector('h2');
+    function initCalcProfile() {
+      const checkboks = calclProfile.querySelectorAll('input[name="checkbox-test"]'),
+            btnNext = calclProfile.querySelector('.popup_calc_profile_button');
 
+      checkboks.forEach( ckeckbox => {
+        ckeckbox.addEventListener('input', e => {
+            if (e.target.checked) {
+              checkboks.forEach( elem => {
+                if (e.target !== elem) {
+                  elem.checked = false;
+                }
+              });
+            }
+        });
+      });
 
-        title.textContent = isSuccess && this ? `Заявка успешно принята ${this.user_name}!` : 'Что-то пошло не так :\\';
-        subTitle.textContent = isSuccess ? `Мы свяжемся с вами по номеру ${this.user_phone}!` : 'Попробуйте оставить заявку позже';
+      btnNext.addEventListener('click', () => {
+        const arrCheckboks = Array.from(checkboks);
 
-        if (isSuccess) {
-          successBlock = document.createElement('div');
-
-          successBlock.classList.add('popup__img');
-          successBlock.innerHTML = `<img class="" src="./img/main/icons/check-solid.svg" alt="success">`;
-          popupFormElem.append(successBlock);
+        if ( !arrCheckboks.some(elem => elem.checked) ) {
+          checkboks.forEach( elem => {
+            showNoValidAnimation(elem.parentElement);
+          });
+          return;
         }
 
-        showModal(modalSendsResult);
+        
+        const checkedElem = arrCheckboks.find(elem => {
+          return elem.checked;
+        });
+
+        resultData.profile = checkedElem.parentElement.querySelector('.checkbox-custom').getAttribute('id');
+        resultData.type = document.querySelector('#view_type').value;
+
+        closeModal(calclProfile);
+        showModal(calcEnd);
+
+      });
+
+
+
+    }
+
+    initCalcModal({
+      triggerSelector: '.popup_calc_button',
+    });
+
+    initCalcProfile();
+
+  }
+
+  function showNoValidAnimation(elem) {
+    const transformValue = window.getComputedStyle(elem, null).getPropertyValue("transform"),
+          startTransleteStyleElem = transformValue === 'none' ? '' : transformValue;
+    
+    const keyFrames = [
+      {transform: `translate3d(0, 0, 0) ${startTransleteStyleElem}`},
+      {transform: `translate3d(-5px, 0, 0) ${startTransleteStyleElem}`},
+      {transform: `translate3d(5px, 0, 0) ${startTransleteStyleElem}`},
+      {transform: `translate3d(-5px, 0, 0) ${startTransleteStyleElem}`},
+      {transform: `translate3d(5px, 0, 0) ${startTransleteStyleElem}`},
+      {transform: `translate3d(-5px, 0, 0) ${startTransleteStyleElem}`},
+      {transform: `translate3d(5px, 0, 0) ${startTransleteStyleElem}`},
+      {transform: `translate3d(-5px, 0, 0) ${startTransleteStyleElem}`},
+      {transform: `translate3d(5px, 0, 0) ${startTransleteStyleElem}`},
+      {transform: `translate3d(-5px, 0, 0) ${startTransleteStyleElem}`},
+      {transform: `translate3d(5px, 0, 0) ${startTransleteStyleElem}`},
+      {transform: `translate3d(0, 0, 0) ${startTransleteStyleElem}`}
+    ];
+    elem.animate(keyFrames, 2000);
+  }
+
+  function clearResultData(resultData) {
+    for (let key in resultData) {
+      resultData[key] = '';
+    }
+  }
+
+  async function sendData(form, bodyType = 'json') {
+      
+    const url = "https://jsonplaceholder.typicode.com/posts";
+    let body, content;
+
+    switch (bodyType) {
+      case 'json': 
+        body = JSON.stringify({...Object.fromEntries(new FormData(form)), ...resultData});
+        content = 'application/json; charset=UTF-8';
+        break;
+
+      case 'FormData': 
+        const formData = new FormData(form);
+        for (let key in resultData) {
+          formData.append(key, resultData[key]);
+        }
+
+        body = formData;
+        content = 'multipart/form-data';
+        break;
+    }
+
+    const headers = new Headers();
+          headers.append('content-type',content);
+          
+    const request = new Request(url, {
+            headers: headers,
+            method: 'POST',
+            body: body,
+          });
+
+    showLoader(form);
+
+    try {
+      const response = await fetch(request),
+            saveDate = await response.json();
+
+      processingResult.call(saveDate, true);
+
+    } catch(e) {
+      processingResult(false);
+
+    } finally {
+      closeLoader(form);
+      clearResultData(resultData);
+      form.reset();
+    }
+      
+    function processingResult(isSuccess) {
+      const openModals = document.querySelectorAll('.show-modal'),
+            modalSendsResult = document.querySelector('.popup_send'),
+            popupFormElem = modalSendsResult.querySelector('.popup_form');
+
+      let successBlock = modalSendsResult.querySelector('.popup__img');
+          successBlock?.remove();
+
+      openModals.forEach( elem => {
+        closeModal(elem);
+      });
+
+      const title = modalSendsResult.querySelector('h1'),
+            subTitle = modalSendsResult.querySelector('h2');
+
+      title.innerHTML = isSuccess && this ? `Заявка успешно принята <span class="popup_form_info">${this.user_name}</span>!` 
+                                          : 'Что-то пошло не так :\\';
+                                          
+      subTitle.innerHTML = isSuccess ? `Мы свяжемся с вами по номеру <span class="popup_form_info">${this.user_phone}</span>!` 
+                                      : 'Попробуйте оставить заявку позже';
+
+      if (isSuccess) {
+        successBlock = document.createElement('div');
+
+        successBlock.classList.add('popup__img');
+        successBlock.innerHTML = `<img class="" src="./img/main/icons/check-solid.svg" alt="success">`;
+        popupFormElem.append(successBlock);
       }
+
+      showModal(modalSendsResult);
     }
 
     function showLoader(form) {
@@ -228,42 +373,19 @@ const forms = () => {
       const loader = form.querySelector('.loader');
       if (loader) loader.style.display = '';
     }
-    function noValidIsShowing(form) {
-      let validMessages = form.querySelectorAll('.validation-massage_no_valid');
-          validMessages = validMessages ? Array.from(validMessages) : [];
-
-      let noValidShow = false;
-      for (let massageElem of validMessages) {
-        noValidShow = true;
-        const startTransleteStyleElem = window.getComputedStyle(massageElem, null).getPropertyValue("transform");
-
-        const keyFrames = [
-                            {transform: `translate3d(0, 0, 0) ${startTransleteStyleElem}`},
-                            {transform: `translate3d(-5px, 0, 0) ${startTransleteStyleElem}`},
-                            {transform: `translate3d(5px, 0, 0) ${startTransleteStyleElem}`},
-                            {transform: `translate3d(-5px, 0, 0) ${startTransleteStyleElem}`},
-                            {transform: `translate3d(5px, 0, 0) ${startTransleteStyleElem}`},
-                            {transform: `translate3d(-5px, 0, 0) ${startTransleteStyleElem}`},
-                            {transform: `translate3d(5px, 0, 0) ${startTransleteStyleElem}`},
-                            {transform: `translate3d(-5px, 0, 0) ${startTransleteStyleElem}`},
-                            {transform: `translate3d(5px, 0, 0) ${startTransleteStyleElem}`},
-                            {transform: `translate3d(-5px, 0, 0) ${startTransleteStyleElem}`},
-                            {transform: `translate3d(5px, 0, 0) ${startTransleteStyleElem}`},
-                            {transform: `translate3d(0, 0, 0) ${startTransleteStyleElem}`}
-                          ];
-
-        let animateMessage = massageElem.animate(keyFrames, 2000);
-      }
-
-      return noValidShow;
-    }
   }
 
   callbackFormsInit({
     formsSelector: '[data-type-form="callback"]',
     phoneSelector: '[name="user_phone"]',
     nameSelector: '[name="user_name"]'
-  }); 
+  });
+  
+  calcForms({
+    calcFormProfileSelector: '.popup_calc',
+    calcFormProfileContentSelector: '.popup_calc_profile',
+    calcFormProfileEndSelector: '.popup_calc_end',
+  });
 
 };
 
