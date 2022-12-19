@@ -6,6 +6,7 @@ import tabs from './modules/tabs.js';
 import forms from './modules/forms.js';
 import timer from './modules/timer.js';
 import gallery from './modules/gallery.js';
+import arrowUp from './modules/arrow-up.js';
 
 window.addEventListener("DOMContentLoaded",() => {
   checkWebp();
@@ -15,4 +16,5 @@ window.addEventListener("DOMContentLoaded",() => {
   forms();
   timer();
   gallery();
+  arrowUp();
 });

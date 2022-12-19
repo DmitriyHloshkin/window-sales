@@ -2,9 +2,7 @@ import { showModal, closeModal } from './modals.js';
 
 const forms = () => {
 
-  const resultData = {
- 
-  };
+  const resultData = {};
 
   function callbackFormsInit({ formsSelector, phoneSelector, nameSelector }) {
     const forms = document.querySelectorAll(formsSelector);

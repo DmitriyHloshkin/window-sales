@@ -82,6 +82,4 @@ export default function slickSlider() {
             tabs();
         });
     }); 
-
-
 }  

@@ -102,26 +102,39 @@ function clearForm(form) {
 }
 
 function closeModal(modal) {
+  if (modal.querySelector('.popup_content')) {
+    const elem = modal.querySelector('.popup_content');
+    const currentLeftPosition = window.getComputedStyle(elem).getPropertyValue('left');
+    modal.querySelector('.popup_content').style.left = currentLeftPosition;
+  }
+
   modal.classList.remove('fadeIn');
   modal.classList.add('fadeOut');
-  document.documentElement.style.overflow = '';
-  
-  
-  let duration = window.getComputedStyle(modal).animationDuration;
-      duration = +duration.replace(/\D/, '');
-      duration = duration === 0 ? 0 : duration * 1000;
-      
+
+  const duration = calcDurationAnim(modal);
+  document.body.style.overflow = '';
+  document.body.style.marginRight = '';
+
   setTimeout(() => modal.classList.remove('show-modal'), duration / 2);
+
 }
 
 function showModal(modal, idTimer = null) {
+  
   clearForm(modal.querySelector('form'));
   clearCalcForm();
   clearCalcProfileForm(); 
 
+  if (modal.querySelector('.popup_content')) {
+    modal.querySelector('.popup_content').removeAttribute('style');
+  }
+
   modal.classList.add('fadeIn','show-modal');
   modal.classList.remove('fadeOut');
-  document.documentElement.style.overflow = 'hidden';
+
+  document.body.style.overflow = 'hidden';
+  document.body.style.marginRight = `${calcWithScroll()}px`;
+
   clearInterval(idTimer);
 }
 
@@ -131,6 +144,29 @@ function clearCalcForm() {
 
 function clearCalcProfileForm() {
   document.querySelectorAll('input[name="checkbox-test"]').forEach( elem => elem.checked = false);
+}
+
+function calcDurationAnim(modal) {
+  let duration = window.getComputedStyle(modal).animationDuration;
+      duration = +duration.replace(/\D/, '');
+      duration = duration === 0 ? 0 : duration * 1000;
+
+  return duration;
+}
+
+export function calcWithScroll() {
+  let div = document.createElement('div');
+
+  div.style.width = '50px';
+  div.style.height = '50px';
+  div.style.overflowY = 'scroll';
+  div.style.visibility = 'hidden';
+
+  document.body.appendChild(div);
+  let scrollWidth = div.offsetWidth - div.clientWidth;
+  div.remove();
+
+  return scrollWidth;
 }
 
 export default modals;

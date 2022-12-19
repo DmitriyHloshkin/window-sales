@@ -1,3 +1,5 @@
+import { calcWithScroll } from './modals.js';
+
 const gallery = () => {
   function initGallery({ selectorImg }) {
     const images = document.querySelectorAll(selectorImg);
@@ -11,11 +13,11 @@ const gallery = () => {
           bigImg = createImg(imgSrc);
 
         wrap.append(bigImg);
-        document.documentElement.append(wrap);
-        document.documentElement.style.overflow = 'hidden';
-
-
+        document.body.append(wrap);
+        document.body.style.overflow = 'hidden';
+        document.body.style.marginRight = `${calcWithScroll()}px`;
       });
+      
     });
 
     function createWrap() {
@@ -35,13 +37,16 @@ const gallery = () => {
         if (e.target && !e.target.matches('img')) {
           wrap.classList.remove('fadeIn');
           wrap.classList.add('fadeOut');
-          document.documentElement.style.overflow = '';
 
           let duration = window.getComputedStyle(wrap).animationDuration;
-          duration = +duration.replace(/\D/, '');
-          duration = duration === 0 ? 0 : duration * 1000;
+              duration = +duration.replace(/\D/, '');
+              duration = duration === 0 ? 0 : duration * 1000;
 
-          setTimeout(() => wrap.remove(), duration / 2);
+          setTimeout(() => {
+            document.body.style.overflow = '';
+            document.body.style.marginRight = ``;
+            wrap.remove();
+          }, duration / 2);
         }
       });
 
